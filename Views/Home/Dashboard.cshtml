@@ -1,0 +1,44 @@
+﻿@using Auctions.Models
+@model List<Product>
+
+<div class="inline">
+    <h1>Current Auctions</h1>
+    <h5>Hi, @ViewBag.SessionUser.FirstName</h5>
+    <a href="/logout">Logout</a>
+</div>
+
+<table class="dash">
+    <tr>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Top Bid</th>
+        <th>Time Remaining</th>
+        <th></th>
+    </tr>
+    @{
+        foreach (Product prod in Model)
+        {
+            <tr>
+                <td><a href="/product/@prod.ProductId">@prod.Name</a></td>
+                <td>@prod.Seller.FirstName</td>
+                <td>$@prod.HighestBid</td>
+                @{
+                    TimeSpan days = prod.EndDate - DateTime.Now;
+                    days.ToString();
+                    <td>@days.Days day(s)</td>
+                 }
+                <td>@{
+                    if(prod.SellerId == ViewBag.SessionUser.UserId)
+                    {
+                        <a href="/delete/@prod.ProductId">Delete</a>
+                    }
+                }</td>
+            </tr>
+        }
+    }
+</table>
+<div class="inline">
+    <a href="/new"><button>New Auction</button></a>
+    <p>Your Current Wallet: $@ViewBag.SessionUser.Wallet</p>
+</div>
+

@@ -1,0 +1,64 @@
+﻿@using Auctions.Models
+@model User
+
+<h1>Login</h1>
+<form asp-action="Login" method="post">
+    <table>
+        <tr>
+            <td><label for="LoginUsername">Username</label></td>
+            <td>
+                <span>@ViewBag.UsernameError</span><br />
+                <input type="text" name="LoginUsername" />
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label for="LoginPassword">Password</label></td>
+            <td>
+                <span>@ViewBag.PasswordError</span><br />
+                <input type="password" name="LoginPassword" />
+            </td>
+            <td><input type="submit" value="Login" /></td>
+        </tr>
+    </table>
+</form>
+
+<h1>Registration</h1>
+<form asp-action="Register" method="post">
+    <table>
+        <tr>
+            <td>
+                <label asp-for="Username">Username</label>
+                <span asp-validation-for="Username"></span>
+                <input type="text" asp-for="Username" />
+            </td>
+            <td>
+                <label asp-for="FirstName">First Name</label>
+                <span asp-validation-for="FirstName"></span>
+                <input type="text" asp-for="FirstName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password"></span>
+                <input type="password" asp-for="Password" />
+            </td>
+            <td>
+                <label asp-for="LastName">Last Name</label>
+                <span asp-validation-for="LastName"></span>
+                <input type="text" asp-for="LastName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Confirm">Confirm Password</label><br />
+                <span asp-validation-for="Confirm"></span><br />
+                <input type="password" asp-for="Confirm" />
+            </td>
+            <td>
+                <input type="submit" value="Register" />
+            </td>
+        </tr>
+    </table>
+</form>

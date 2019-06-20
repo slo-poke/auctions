@@ -1,0 +1,42 @@
+﻿@using Auctions.Models
+@model Product
+
+<div class="inline">
+    <h1>New Auction</h1>
+    <a href="/dashboard">Home</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<form asp-action="CreateNew" method="post">
+    <table class="forms">
+        <tr>
+            <td>
+                <label asp-for="Name">Product Name</label>
+                <span asp-validation-for="Name"></span>
+                <input type="text" asp-for="Name" />
+            </td>
+            <td>
+                <label asp-for="StartBid">Starting Bid</label>
+                <span asp-validation-for="StartBid"></span>
+                <input type="number" asp-for="StartBid" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Description">Descripton</label>
+                <span asp-validation-for="Description"></span>
+                <textarea asp-for="Description"></textarea>
+            </td>
+            <td>
+                <label asp-for="EndDate">End Date</label>
+                <span asp-validation-for="EndDate"></span>
+                <input type="date" asp-for="EndDate" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create Auction" />
+            </td>
+        </tr>
+    </table>
+</form>

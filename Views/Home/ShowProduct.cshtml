@@ -1,0 +1,57 @@
+﻿@using Auctions.Models
+@model Product
+
+<div class="inline">
+    <h1>@Model.Name</h1>
+    <a href="/dashboard">Home</a>
+    <a href="/logout">Logout</a>
+</div>
+<h4>Created by: @Model.Seller.FirstName</h4>
+@{
+    TimeSpan days = Model.EndDate - DateTime.Now;
+    days.ToString();
+}
+
+<p>
+    Time Remaining: @days.Days day(s)</p>
+
+    <br /><label>Product Description: </label>
+<p>@Model.Description</p>
+
+
+<table>
+    <tr>
+        <td><label>Current Highest Bid:</label></td>
+        @{
+            <td><label>@Model.HighestBid</label></td>
+        }
+
+    </tr>
+    <tr>
+        <td>
+            @{
+                if (ViewBag.HighestBid != null)
+                {
+                    <label>By @ViewBag.HighestBid.User.FirstName @ViewBag.HighestBid.User.LastName</label>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <form action="/bid/@Model.ProductId" method="post">
+                <span>@ViewBag.BidError</span>
+                <input type="number" name="UserBid" /><br />
+        </td>
+        <td>
+            <input type="submit" value="Bid!!" />
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
